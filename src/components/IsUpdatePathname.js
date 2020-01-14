@@ -14,7 +14,7 @@ class IsUpdatePathname extends React.Component {
 }
 
 IsUpdatePathname.defaultProps = {
-  isUpdate: () => {},
+  isUpdate: () => { },
 };
 
 export default withRouter(IsUpdatePathname);

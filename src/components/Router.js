@@ -7,52 +7,7 @@ import MarkdownDetail from './MarkdownDetail';
 import MarkdownCreate from './MarkdownCreate';
 import MarkdownEdit from './MarkdownEdit';
 
-// const fakeAuth = {
-//   isAuthenticated: false,
-//   authenticate(cb) {
-//     this.isAuthenticated = true;
-//     setTimeout(cb, 100); // fake async
-//   },
-//   signout(cb) {
-//     this.isAuthenticated = false;
-//     setTimeout(cb, 100);
-//   },
-// };
-
-// const Login = withRouter(({ history }) => {
-//   return (
-//     <button
-//       onClick={() => {
-//         fakeAuth.authenticate(() => history.push('/protected'));
-//       }}
-//     >
-//       Sign in
-//     </button>
-//   );
-// });
-
-// const Protected = () => <div>Protected</div>;
-const NoMatch = () => <div>NoMatch</div>;
-
-// const PrivateRoute = ({ component: Component, ...rest }) => {
-//   return (
-//     <Route
-//       {...rest}
-//       render={props =>
-//         fakeAuth.isAuthenticated ? (
-//           <Component {...props} />
-//         ) : (
-//           <Redirect
-//             to={{
-//               pathname: '/login',
-//               state: { from: props.location },
-//             }}
-//           />
-//         )
-//       }
-//     />
-//   );
-// };
+const NotDefined = () => <h1>404 Not Defined</h1>;
 
 export default () => {
   return (
@@ -63,9 +18,7 @@ export default () => {
           <Route exact path="/article/create" component={MarkdownCreate} />
           <Route exact path="/article/:id" component={MarkdownDetail} />
           <Route exact path="/article/:id/edit" component={MarkdownEdit} />
-          {/* <Route exact path="/login" component={Login} />
-          <PrivateRoute exact path="/protected" component={Protected} /> */}
-          <Route component={NoMatch} />
+          <Route component={NotDefined} />
         </Switch>
       </Layout>
     </Router>

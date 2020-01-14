@@ -18,7 +18,7 @@ const MarkdownDetailArticle = styled.div`
   width: 1000px;
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background: ${props => props.theme.colors['white']};
+  background: ${props => props.theme.colors.white};
 `;
 
 const MarkdownDetailArticleDesc = styled.div`
@@ -31,7 +31,7 @@ const MarkdownDetailArticleDesc = styled.div`
 `;
 
 const MarkdownDetailArticleSubject = styled.h6`
-  color: ${props => props.theme.colors['blue']};
+  color: ${props => props.theme.colors.blue};
   font-size: 18px;
   margin-top: 0;
   margin-bottom: 0;
@@ -106,7 +106,6 @@ export default () => {
     dispatch(getArticle(id));
   }, [dispatch, id]);
 
-  console.log(article)
   if (!article) return <div>Loading...</div>;
   return (
     <MarkdownDetail>
@@ -123,9 +122,8 @@ export default () => {
           >
             <MdLink size={16} />
           </MarkdownDetailArticleClipboard>
-          <MarkdownDetailArticleOperating size={16} onClick={redirectEditMarkdownPage}
-          />
-          <MarkdownDetailArticleDelete onClick={deleteArticle}/>
+          <MarkdownDetailArticleOperating size={16} onClick={redirectEditMarkdownPage} />
+          <MarkdownDetailArticleDelete onClick={deleteArticle} />
         </MarkdownDetailArticleDesc>
         <MarkdownDetailArticleContent>
           <ReactMarkdown source={article.content} />

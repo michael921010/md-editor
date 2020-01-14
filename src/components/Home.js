@@ -17,7 +17,7 @@ const Home = () => {
     useEffect(() => {
         dispatch(getAllArticles());
     }, [dispatch]);
-console.log(articles)
+
     return (
         <MarkdownList>
             {articles.map(article => (

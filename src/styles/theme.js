@@ -22,5 +22,6 @@ export default {
       white: '#FFFFFF',
       gray: '#9E9E9E',
       blue: '#0366d6',
+      waterblue: '#21b5ff',
     },
   };  

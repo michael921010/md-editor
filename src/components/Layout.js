@@ -19,7 +19,7 @@ const Layout = styled.div`
 `;
 
 const LayoutHeader = styled.header`
-  background: #24292e;
+  background: ${props => props.theme.colors.waterblue};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,12 +29,12 @@ const LayoutHeader = styled.header`
 `;
 
 const LayoutHeaderSiteName = styled.div`
-  font-size: ${props => props.theme.fontSizes['xl']};
-  color: ${props => props.theme.colors['gray']};
+  font-size: ${props => props.theme.fontSizes.xl};
+  color: ${props => props.theme.colors.blue};
   cursor: pointer;
 
   & strong {
-    color: ${props => props.theme.colors['white']};
+    color: ${props => props.theme.colors.white};
   }
 `;
 
@@ -66,8 +66,8 @@ const LayoutJumpTopButton = styled(IoIosArrowUp)`
   cursor: pointer;
   border-radius: 2px;
   padding: ${props => props.theme.space[0]};
-  background: #21b5ff;
-  color: ${props => props.theme.colors['white']}
+  background: ${props => props.theme.colors.waterblue};
+  color: ${props => props.theme.colors.white}
   margin-left: ${props => props.theme.space[0]};
 
   &:hover {
@@ -76,46 +76,46 @@ const LayoutJumpTopButton = styled(IoIosArrowUp)`
 `;
 
 export default ({ children }) => {
-    const scrollView = useRef(null);
-    const history = useHistory();
+  const scrollView = useRef(null);
+  const history = useHistory();
 
-    const scrollToTop = useCallback(isUpdatePathname => {
-        if (isUpdatePathname) scrollView.current.scroll(0, 0);
-    }, [scrollView]);
-    const jumpToTop = useCallback(() => {
-      scrollView.current.scroll(0, 0);
-    }, []);
-    const redirectHomePage = () => {
-        history.replace('/');
-    };
-    const redirectSourcePage = () => {
-        document.location = 'https://github.com/ywwwtseng/markdown-editor';
-    };
-    const redirectCreateMarkdownPage = () => {
-        history.replace('/article/create');
-    };
+  const scrollToTop = useCallback(isUpdatePathname => {
+    if (isUpdatePathname) scrollView.current.scroll(0, 0);
+  }, [scrollView]);
+  const jumpToTop = useCallback(() => {
+    scrollView.current.scroll(0, 0);
+  }, []);
+  const redirectHomePage = useCallback(() => {
+    history.replace('/');
+  }, [history]);
+  const redirectSourcePage = useCallback(() => {
+    window.open('https://github.com/leeboy1010/md-editor');
+  }, []);
+  const redirectCreateMarkdownPage = useCallback(() => {
+    history.replace('/article/create');
+  }, [history]);
 
-    return (
-        <Layout>
-            {/* <IsUpdatePathname isUpdate={scrollToTop} /> */}
-            <LayoutHeader>
-                <LayoutHeaderSiteName onClick={redirectHomePage}>
-                    <strong>Markdown</strong>&nbsp;Editor
+  return (
+    <Layout>
+      <IsUpdatePathname isUpdate={scrollToTop} />
+      <LayoutHeader>
+        <LayoutHeaderSiteName onClick={redirectHomePage}>
+          <strong>Markdown</strong>&nbsp;Editor
         </LayoutHeaderSiteName>
-                <LayoutHeaderNav>
-                    <LayoutHeaderNavItem onClick={redirectSourcePage}>
-                        <FaGithub color="white" size={30}/>
-                    </LayoutHeaderNavItem>
-                    <LayoutHeaderNavItem onClick={redirectCreateMarkdownPage}>
-                        <IoIosAddCircleOutline color="white" size={30}/>
-                    </LayoutHeaderNavItem>
-                    <Avatar size={30}/>
-                </LayoutHeaderNav>
-            </LayoutHeader>
-            <LayoutPageWrapper ref={scrollView}>
-                {children}
-            </LayoutPageWrapper>
-            <LayoutJumpTopButton size={25} onClick={jumpToTop}/>
-        </Layout>
-    );
+        <LayoutHeaderNav>
+          <LayoutHeaderNavItem onClick={redirectSourcePage}>
+            <FaGithub color="white" size={30} />
+          </LayoutHeaderNavItem>
+          <LayoutHeaderNavItem onClick={redirectCreateMarkdownPage}>
+            <IoIosAddCircleOutline color="white" size={30} />
+          </LayoutHeaderNavItem>
+          <Avatar size={30} />
+        </LayoutHeaderNav>
+      </LayoutHeader>
+      <LayoutPageWrapper ref={scrollView}>
+        {children}
+      </LayoutPageWrapper>
+      <LayoutJumpTopButton size={25} onClick={jumpToTop} />
+    </Layout>
+  );
 };

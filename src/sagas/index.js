@@ -14,7 +14,6 @@ function* getArticle(action) {
 }
 
 function* createArticle(action) {
-    console.log(action.payload.markdown)
     yield call(Api.createArticle, action.payload.markdown);
     history.replace('/');
 }

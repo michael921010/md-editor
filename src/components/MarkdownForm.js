@@ -13,7 +13,7 @@ const MarkdownDetailArticle = styled.div`
   width: 100vw;
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background: ${props => props.theme.colors['white']};
+  background: ${props => props.theme.colors.white};
 `;
 
 const MarkdownDetailArticleDesc = styled.div`
@@ -26,7 +26,7 @@ const MarkdownDetailArticleDesc = styled.div`
 `;
 
 const MarkdownDetailArticleSubject = styled.h6`
-  color: ${props => props.theme.colors['blue']};
+  color: ${props => props.theme.colors.blue};
   margin-top: 0;
   margin-bottom: 0;
   margin-left: ${props => props.theme.space[0]};

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { createArticle } from '../actions';
 import MarkdownForm from './MarkdownForm';
 
-export default () => {
+export default React.memo(() => {
     const dispatch = useDispatch();
     const onSubmit = useCallback(
         markdown => {
@@ -13,4 +13,4 @@ export default () => {
     );
 
     return <MarkdownForm onSubmit={onSubmit} />;
-};
+});

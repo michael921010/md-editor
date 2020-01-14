@@ -10,7 +10,7 @@ const Mirror = styled(CodeMirror)`
     width: 50%;
 `;
 
-export default props => (
+export default React.memo(props => (
     <Mirror
         {...props}
         options={{
@@ -19,4 +19,4 @@ export default props => (
             mode: 'markdown',
         }}
     />
-);
+));

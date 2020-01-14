@@ -4,7 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import ReactMarkdown from './ReactMarkdown';
 import { AiOutlineDelete } from "react-icons/ai";
-import {  removeArticle } from '../actions';
+import { MdModeEdit } from "react-icons/md";
+import { removeArticle } from '../actions';
 import Avatar from './Avatar';
 
 const MarkdownListItem = styled.div`
@@ -13,7 +14,7 @@ const MarkdownListItem = styled.div`
   padding: ${props => props.theme.space[4]};
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background: ${props => props.theme.colors['white']};
+  background: ${props => props.theme.colors.white};
 `;
 
 const MarkdownDesc = styled.div`
@@ -39,6 +40,19 @@ const MarkdownSubject = styled.h6`
   &:hover {
     cursor: pointer;
     text-decoration: underline;
+  }
+`;
+
+const MarkdownDetailArticleOperating = styled(MdModeEdit)`
+  cursor: pointer;
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  padding: ${props => props.theme.space[0]};
+  background: #f1f5f7;
+  margin-left: ${props => props.theme.space[0]};
+
+  &:hover {
+    opacity: 0.7;
   }
 `;
 
@@ -73,7 +87,7 @@ export default memo(({ id, subject, content }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const redirectEditMarkdownPage = useCallback(() => {
+  const redirectMarkdownPage = useCallback(() => {
     history.push(`/article/${id}`);
   }, [history, id]);
   const deleteArticle = useCallback(() => {
@@ -85,14 +99,17 @@ export default memo(({ id, subject, content }) => {
       <MarkdownDesc>
         <MarkdownDescTitle>
           <Avatar />
-          <MarkdownSubject onClick={redirectEditMarkdownPage}>
+          <MarkdownSubject onClick={redirectMarkdownPage}>
             <strong>{subject}</strong>
           </MarkdownSubject>
         </MarkdownDescTitle>
-          <MarkdownDetailArticleDelete onClick={deleteArticle}/>
+
+        <MarkdownDescTitle>
+          <MarkdownDetailArticleDelete onClick={deleteArticle} />
+        </MarkdownDescTitle>
       </MarkdownDesc>
 
-      <MarkdownContent onClick={redirectEditMarkdownPage}>
+      <MarkdownContent onClick={redirectMarkdownPage}>
         <ReactMarkdown source={content} />
       </MarkdownContent>
     </MarkdownListItem>
